@@ -321,6 +321,8 @@ async def upload_resume(file: UploadFile = File(...)):
             text = extract_text_from_pdf(file_bytes)
         elif file.filename.endswith('.docx'):
             text = extract_text_from_docx(file_bytes)
+        elif file.filename.endswith('.txt'):
+            text = file_bytes.decode('utf-8')
         else:
             raise HTTPException(status_code=400, detail="Unsupported file format")
         
